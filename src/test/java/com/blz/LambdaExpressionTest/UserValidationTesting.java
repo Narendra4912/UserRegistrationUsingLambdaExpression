@@ -64,4 +64,40 @@ public class UserValidationTesting {
             Assert.assertEquals(CustomEmailException.ExceptionType.EMAIL_ID_IS_IN_INCORRECT_FORMAT,e.exceptionMessage);
         }
     }
+
+    @Test
+    public void givenMobileNoShouldPassWhenMobileNoRulesSatisfied() {
+
+        try
+        {
+            String mobileNo = "91 9876543210";
+            UserValidation user = new UserValidation();
+            boolean actualResult = user.userValidateMobileNo.validate(mobileNo);
+            boolean expectedResult = true;
+            Assert.assertEquals(expectedResult, actualResult);
+        }
+        catch (CustomEmailException e)
+        {
+            System.out.println(CustomEmailException.ExceptionType.MOBILE_NO_MUST_BE_IN_FORMAT_COUNTRY_CODE_SPACE_MOBILE_NO);
+            Assert.assertEquals(CustomEmailException.ExceptionType.MOBILE_NO_MUST_BE_IN_FORMAT_COUNTRY_CODE_SPACE_MOBILE_NO,e.exceptionMessage);
+        }
+    }
+
+    @Test
+    public void givenPasswordShouldPassWhenPasswordRulesSatisfied() {
+
+        try
+        {
+            String password = "Abcd@1gh";
+            UserValidation user = new UserValidation();
+            boolean actualResult = user.userValidatePassword.validate(password);
+            boolean expectedResult = true;
+            Assert.assertEquals(expectedResult, actualResult);
+        }
+        catch (CustomEmailException e)
+        {
+            System.out.println(CustomEmailException.ExceptionType.MINIMUM_8_DIGITS_PASSWORD_WITH_AT_LEAST_ONE_CAPITAL_LETTER_AND_AT_LEAST_ONE_NUMERIC_LETTER_AND_EXACT_ONE_SPECIAL_SYMBOL);
+            Assert.assertEquals(CustomEmailException.ExceptionType.MINIMUM_8_DIGITS_PASSWORD_WITH_AT_LEAST_ONE_CAPITAL_LETTER_AND_AT_LEAST_ONE_NUMERIC_LETTER_AND_EXACT_ONE_SPECIAL_SYMBOL,e.exceptionMessage);
+        }
+    }
 }

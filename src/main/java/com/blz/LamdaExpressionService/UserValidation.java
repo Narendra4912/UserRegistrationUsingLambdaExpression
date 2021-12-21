@@ -72,4 +72,34 @@ public class UserValidation {
             throw new CustomEmailException(CustomEmailException.ExceptionType.EMAIL_ID_IS_IN_INCORRECT_FORMAT);
         }
     };
+
+    public UserValidationInterface userValidateMobileNo = (mobile) -> {
+
+        this.mobileNo = mobile;
+        String regex = "^[1-9]{2}( )[0-9]{10}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(String.valueOf(mobileNo));
+
+        if(matcher.matches())
+            return true;
+        else
+        {
+            throw new CustomEmailException(CustomEmailException.ExceptionType.MOBILE_NO_MUST_BE_IN_FORMAT_COUNTRY_CODE_SPACE_MOBILE_NO);
+        }
+    };
+
+    public UserValidationInterface userValidatePassword = (password) -> {
+
+        this.password = password;
+        String regex="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,12}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+
+        if(matcher.matches())
+            return true;
+        else
+        {
+            throw new CustomEmailException(CustomEmailException.ExceptionType.MINIMUM_8_DIGITS_PASSWORD_WITH_AT_LEAST_ONE_CAPITAL_LETTER_AND_AT_LEAST_ONE_NUMERIC_LETTER_AND_EXACT_ONE_SPECIAL_SYMBOL);
+        }
+    };
 }

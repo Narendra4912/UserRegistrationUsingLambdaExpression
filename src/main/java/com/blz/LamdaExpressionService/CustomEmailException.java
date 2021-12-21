@@ -2,10 +2,10 @@ package com.blz.LamdaExpressionService;
 
 public class CustomEmailException extends Exception{
 
-    public String message;
+    public ExceptionType exceptionMessage;
 
-    public CustomEmailException(String message) {
-        this.message = message;
+    public CustomEmailException(ExceptionType message) {
+        this.exceptionMessage = message;
     }
 
     public enum ExceptionType
@@ -18,12 +18,5 @@ public class CustomEmailException extends Exception{
         PASSWORD_MUST_CONTAIN_AT_LEAST_ONE_NUMERIC_LETTER,
         PASSWORD_MUST_CONTAIN_EXACT_ONE_SPECIAL_SYMBOL,
         MOBILE_NO_MUST_BE_IN_FORMAT_COUNTRY_CODE_SPACE_MOBILE_NO
-    }
-
-    @Override
-    public String toString() {
-        return "CustomEmailException{" +
-                "message='" + message + '\'' +
-                '}';
     }
 }

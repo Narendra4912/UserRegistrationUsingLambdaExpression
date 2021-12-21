@@ -45,4 +45,23 @@ public class UserValidationTesting {
             Assert.assertEquals(CustomEmailException.ExceptionType.LASTNAME_MUST_START_WITH_CAPITAL_LETTER_AND_MUST_BE_3_DIGITS_LONG,e.exceptionMessage);
         }
     }
+
+    @Test
+    public void givenEmailShouldPassWhenEmailRulesSatisfied() {
+
+        try
+        {
+            //Happy Email testing
+            String email = "abc.xyz@domain.co.in";
+            UserValidation user = new UserValidation();
+            boolean actualResult = user.userValidateEmail.validate(email);
+            boolean expectedResult = true;
+            Assert.assertEquals(expectedResult, actualResult);
+        }
+        catch (CustomEmailException e)
+        {
+            System.out.println(CustomEmailException.ExceptionType.EMAIL_ID_IS_IN_INCORRECT_FORMAT);
+            Assert.assertEquals(CustomEmailException.ExceptionType.EMAIL_ID_IS_IN_INCORRECT_FORMAT,e.exceptionMessage);
+        }
+    }
 }

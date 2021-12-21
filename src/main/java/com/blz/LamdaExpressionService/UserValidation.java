@@ -57,4 +57,19 @@ public class UserValidation {
             throw new CustomEmailException(CustomEmailException.ExceptionType.LASTNAME_MUST_START_WITH_CAPITAL_LETTER_AND_MUST_BE_3_DIGITS_LONG);
         }
     };
+
+    public UserValidationInterface userValidateEmail = (email) -> {
+
+        this.email = email;
+        String regex = "^[a-z0-9]{3,20}([+._-][a-z0-9]+)?@[a-z0-9]+.[a-z0-9]{2,3}(.[a-z]{2})?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+
+        if(matcher.matches())
+            return true;
+        else
+        {
+            throw new CustomEmailException(CustomEmailException.ExceptionType.EMAIL_ID_IS_IN_INCORRECT_FORMAT);
+        }
+    };
 }

@@ -37,14 +37,24 @@ public class UserValidation {
         Pattern pattern = Pattern.compile(userRegex);
         Matcher matcher = pattern.matcher(firstName);
 
-        if(matcher.matches())
-        {
+        if (matcher.matches()) {
             return true;
-        }
-        else
-        {
+        } else {
             throw new CustomEmailException(CustomEmailException.ExceptionType.FIRSTNAME_MUST_START_WITH_CAPITAL_LETTER_AND_MUST_BE_3_DIGITS_LONG);
         }
     };
 
+    public UserValidationInterface userValidateLastName = (lastName) -> {
+
+        this.lastName = lastName;
+        String userRegex = "^[A-Z]{1}[A-Za-z0-9]{2}$";
+        Pattern pattern = Pattern.compile(userRegex);
+        Matcher matcher = pattern.matcher(lastName);
+
+        if (matcher.matches())
+            return true;
+        else {
+            throw new CustomEmailException(CustomEmailException.ExceptionType.LASTNAME_MUST_START_WITH_CAPITAL_LETTER_AND_MUST_BE_3_DIGITS_LONG);
+        }
+    };
 }
